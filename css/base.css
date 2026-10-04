@@ -1,0 +1,204 @@
+/* ==========================================================================
+   BASE.CSS
+   Kini nga CSS file nagkontrol sa COLOR PALETTE, DESIGN TOKENS, ug GLOBAL RESET.
+   ==========================================================================
+
+   VISUAL MAP / KUNG ASA SILA DAPIT SA SCREEN:
+   --------------------------------------------------------------------------
+   +------------------------------------------------------------------------+
+   | 1. HERO SECTION (Pinaka-ibabaw sa Website):                            |
+   |    * Background sa Hero Banner       -> gigamit ang --y                |
+   |    * Moving Marquee Star icon        -> gigamit ang --y                |
+   |    * Underline sa Navigation Menu    -> gigamit ang --m                |
+   |    * "See my work" button hover      -> gigamit ang --m                |
+   |    * 3D Box Atubangan & Ilawom       -> gigamit ang --m                |
+   |    * 3D Box Tuo & Ibabaw             -> gigamit ang --c                |
+   +------------------------------------------------------------------------+
+   | 2. SELECTED WORK (Tunga nga bahin sa panid):                           |
+   |    * General Page Background         -> gigamit ang --paper            |
+   |    * Project Cards Background        -> gigamit ang --card             |
+   |    * Card Border & Drop Shadow       -> gigamit ang --ink              |
+   |    * Card Hover Glow Shadow          -> gigamit ang --m                |
+   |    * Card Subtitle ("Packaging")     -> gigamit ang --mute             |
+   +------------------------------------------------------------------------+
+   | 3. ABOUT & SKILLS (Ubos sa Work):                                      |
+   |    * Skills Pill Badges              -> gigamit ang --card             |
+   |    * Skills Badge Hover Color        -> gigamit ang --c                |
+   +------------------------------------------------------------------------+
+   | 4. CONTACT FOOTER (Pinaka-ubos sa panid):                              |
+   |    * Tibuok Contact Background       -> gigamit ang --m                |
+   |    * Inquiry Form Card Box           -> gigamit ang --card             |
+   |    * Input Boxes Background          -> gigamit ang --paper            |
+   |    * Input Boxes Border Line         -> gigamit ang --line             |
+   |    * Input Box Focus (in-type)       -> gigamit ang --m                |
+   |    * "Send by email" Button          -> gigamit ang --ink              |
+   +------------------------------------------------------------------------+
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. COLOR PALETTE & DESIGN TOKENS (:root)
+   Kini ang mga variables nga nagkontrol sa tanang kolor ug font sa website.
+   ========================================================================== */
+
+:root {
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Background sa Panid ug Sulod sa Input Fields
+     UNSA NI SIYA: --paper (Humok nga puti/light gray nga main background)
+     ------------------------------------------------------------------------ */
+  --paper: #f3f5fb;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Tanan nga Letra/Text, Baga nga Borders, ug Primary Buttons
+     UNSA NI SIYA: --ink (Panguna nga itom/dark violet nga text ug outline color)
+     ------------------------------------------------------------------------ */
+  --ink: #15131f;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Subtitle sa Cards ("Packaging · 2026") ug Modal Labels
+     UNSA NI SIYA: --mute (Abuhon/secondary text nga dili kaayo hayag)
+     ------------------------------------------------------------------------ */
+  --mute: #5d5b6b;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Nipis nga Border Lines sulod sa Input Boxes sa Form
+     UNSA NI SIYA: --line (Divider lines ug subtle borders)
+     ------------------------------------------------------------------------ */
+  --line: #d5d8e6;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Puti nga Cards, Filter Buttons, ug Inquiry Form Box
+     UNSA NI SIYA: --card (Puti nga card surface background)
+     ------------------------------------------------------------------------ */
+  --card: #ffffff;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Tuo ug Ibabaw sa 3D Box, ug Skills Badge Hover
+     UNSA NI SIYA: --c (Cyan / Asul nga Accent Color)
+     ------------------------------------------------------------------------ */
+  --c: #00a3e0;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Tibuok Contact Footer, Nav Underline, ug Button Hover
+     UNSA NI SIYA: --m (Magenta / Purple nga Primary Accent Color)
+     ------------------------------------------------------------------------ */
+  --m: #8826d8;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Tibuok Hero Header sa Pinaka-ibabaw ug Marquee Star
+     UNSA NI SIYA: --y (Hero Section Banner Background Color)
+     ------------------------------------------------------------------------ */
+  --y: #9529ee;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Dagkong Titulo (H1 Headline, H2 Sections, 3D text)
+     UNSA NI SIYA: --display (Baga ug moderno nga heading font)
+     ------------------------------------------------------------------------ */
+  --display: 'Unbounded', 'Arial Black', sans-serif;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Regular nga Parapo, Descriptions, Inputs, ug Buttons
+     UNSA NI SIYA: --body (Limpyo ug daling basahon nga body text font)
+     ------------------------------------------------------------------------ */
+  --body: 'Figtree', system-ui, sans-serif;
+
+  /* ------------------------------------------------------------------------
+     KUNG ASA DAPIT: Mobile Phone Screen Padding (Notch ug Home Bar)
+     UNSA NI SIYA: Safe Area Insets aron dili masangit sa camera o navigation bar
+     ------------------------------------------------------------------------ */
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+
+/* ==========================================================================
+   2. DARK MODE THEME STYLES
+   Awtomatikong mo-adjust ang mga kolor kung naka-dark mode ang device.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tibuok Website kung naka-Dark Mode ang Browser/Phone
+   UNSA NI SIYA: Mo-ilis sa colors ngadto sa mangitngit nga palette
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121018;  /* Background sa panid mahimong ngitngit */
+    --ink: #f3f2f8;    /* Letra/text mahimong puti ug hayag */
+    --mute: #a5a3b4;   /* Secondary text mahimong light gray */
+    --line: #2d2a3a;   /* Linya sa borders mahimong ngitngit */
+    --card: #1c1927;   /* Cards ug form mahimong ngitngit nga container */
+  }
+}
+
+/* Explicit class kung i-toggle ang data-theme="dark" */
+:root[data-theme="dark"] {
+  --paper: #121018;
+  --ink: #f3f2f8;
+  --mute: #a5a3b4;
+  --line: #2d2a3a;
+  --card: #1c1927;
+}
+
+
+/* ==========================================================================
+   3. GLOBAL RESET & BASE HTML ELEMENTS
+   Standard nga lagda para sa tibuok panid ug layout.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tibuok Panid (HTML Tag)
+   UNSA NI SIYA: Hapsay nga pag-slide inig i-click ang menu links (#work, #about, #contact).
+   -------------------------------------------------------------------------- */
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scroll-behavior: smooth;
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tanan nga Elemento sa Website (*)
+   UNSA NI SIYA: Box-sizing aron ang padding ug borders dili molapas sa gilapdon.
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tibuok Lawas sa Website (Body Tag)
+   UNSA NI SIYA: Nagbutang sa default background, default font, ug pugong sa horizontal scroll.
+   -------------------------------------------------------------------------- */
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1rem / 1.6 var(--body);
+  overflow-x: hidden; /* Pugngan ang dili kinahanglan nga horizontal scrolling */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tanan nga Links (a tags)
+   UNSA NI SIYA: Mosunod sa kolor sa iyang ginikanan nga teksto.
+   -------------------------------------------------------------------------- */
+a {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Keyboard Accessibility Navigation (Tab Key)
+   UNSA NI SIYA: Hayag nga outline inig mag-navigate gamit ang keyboard.
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--m);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Central Container Layout (.wrap)
+   UNSA NI SIYA: Gi-sentro sa tunga ang content nga dunay maximum width nga 1080px.
+   -------------------------------------------------------------------------- */
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}

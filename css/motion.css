@@ -1,0 +1,21 @@
+/* ==========================================================================
+   MOTION.CSS
+   Accessibility styles para sa mga tiggamit nga sensitibo sa motion/animation.
+   Mo-sunod kini sa "prefers-reduced-motion" setting sa device/browser.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* I-disable ang tanang animations ug transitions para sa mga elemento */
+  *,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Ipakita dayon ang project cards nga dili na maghulat sa fade-in animation */
+  .card {
+    opacity: 1;
+    transform: none;
+  }
+}

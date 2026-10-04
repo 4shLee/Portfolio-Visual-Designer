@@ -1,0 +1,181 @@
+/* ==========================================================================
+   SECTIONS.CSS
+   Projects grid, project cards, category filters, About, ug Skills section.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. General Section Styling
+   -------------------------------------------------------------------------- */
+/* Standard nga gintang (vertical padding) sa matag section sa panid */
+section {
+  padding: 4rem 0;
+}
+
+/* Dagkong section headers ("Selected work", "About", "Skills") */
+h2 {
+  font: 800 clamp(1.6rem, 4vw, 2.3rem) / 1.1 var(--display);
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Project Filter Buttons (All, Packaging, Print)
+   -------------------------------------------------------------------------- */
+/* Container para sa filter category buttons */
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* Default look sa matag filter button */
+.filters button {
+  font: 600 0.95rem var(--body);
+  background: var(--card);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 0.5rem 1.1rem;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+/* Inig hover sa button, mosaka gamay */
+.filters button:hover {
+  transform: translateY(-2px);
+}
+
+/* Aktibo / napili nga button (active filter state) */
+.filters button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* --------------------------------------------------------------------------
+   3. Portfolio Projects Grid & Cards
+   -------------------------------------------------------------------------- */
+/* Responsive multi-column layout para sa mga project cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Matag indibidwal nga project card */
+.card {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 var(--ink); /* Retro brutalist drop shadow */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  /* Sa sugod, nakatago para sa scroll-in reveal animation */
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Klase nga idugang sa Vue directive inig abot sa viewport (Fade & Slide in) */
+.card.in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s ease;
+}
+
+/* Inig hover sa card: mo-alsa gamay, motakilid gamay, ug moluspad og Magenta ang landong */
+.card:hover {
+  transform: translate(-3px, -3px) rotate(-0.6deg);
+  box-shadow: 10px 10px 0 var(--m);
+}
+
+/* Artwork / Visual box sa ibabaw sa card (nagpakita sa letra ug gradient) */
+.art {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  font: 800 5rem var(--display);
+  color: rgba(255, 255, 255, 0.95);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dashed border nga sama sa print dieline / cut-line sa packaging */
+.art::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+}
+
+/* Detalye / teksto sa ubos sa artwork sa card */
+.card .meta {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+/* Titulo sa proyekto sulod sa card */
+.card h3 {
+  font: 800 1.1rem var(--display);
+  margin: 0 0 0.25rem;
+}
+
+/* Kategoriya ug tuig (pananglitan: "Packaging · 2026") */
+.card span {
+  color: var(--mute);
+  font-size: 0.92rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. About & Skills Section
+   -------------------------------------------------------------------------- */
+/* Layout nga nagbahin sa About story ug sa Skills list */
+.about {
+  display: grid;
+  gap: 2.5rem;
+}
+
+/* Sa screens nga 780px pataas, bahinon sa 2 ka kolum */
+@media (min-width: 780px) {
+  .about {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+/* Parapo para sa biography o impormasyon */
+.about p {
+  margin: 0 0 1rem;
+  max-width: 60ch;
+}
+
+/* Listahan sa mga skills tags (pill badges) */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Matag indibidwal nga skill badge */
+.tags li {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  padding: 0.35rem 0.9rem;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Inig hover sa skill tag, mahimong Cyan ang background */
+.tags li:hover {
+  background: var(--c);
+  color: #ffffff;
+}

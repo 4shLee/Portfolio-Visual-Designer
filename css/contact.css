@@ -1,0 +1,316 @@
+/* ==========================================================================
+   CONTACT.CSS
+   Kini nga CSS file nagkontrol sa PINAKA-UBOS (Footer & Contact) sa website.
+   ==========================================================================
+
+   VISUAL MAP / KUNG ASA SILA DAPIT SA SCREEN:
+   --------------------------------------------------------------------------
+   ┌──────────────────────────────────────────────────────────────────────┐
+   │ .contact (Tibuok Magenta/Pink Banner sa pinaka-ubos sa panid)       │
+   │                                                                      │
+   │   .contact-grid (2 ka kolum sa Desktop):                             │
+   │   ┌──────────────────────────────┐  ┌─────────────────────────────┐  │
+   │   │ WALA NGA KOLUM:              │  │ TUO NGA KOLUM:              │  │
+   │   │                              │  │                             │  │
+   │   │ h2: "Got a project in mind?" │  │ .inquiry (Puti nga Box/Card)│  │
+   │   │ p:  Mensahe sa kliyente      │  │ --------------------------- │  │
+   │   │                              │  │ h3: "Project inquiry"       │  │
+   │   │ .info (Listahan):            │  │ .row: Name & Email inputs   │  │
+   │   │ • Email                      │  │ .row: Phone & Company inputs│  │
+   │   │ • Phone                      │  │ .row: Need & Budget dropdown│  │
+   │   │ • Location                   │  │ Deadline date input         │  │
+   │   │ • Facebook                   │  │ Project details textarea    │  │
+   │   │ • Instagram                  │  │                             │  │
+   │   │ • Availability               │  │ .actions:                   │  │
+   │   │                              │  │ [ Send by email ] [ Copy ]  │  │
+   │   └──────────────────────────────┘  └─────────────────────────────┘  │
+   └──────────────────────────────────────────────────────────────────────┘
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CONTACT SECTION CONTAINER & LAYOUT
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tibuok Magenta/Pink Footer Banner sa Pinaka-ubos
+   UNSA NI SIYA: Ang pinakadako nga container sa contact section.
+   -------------------------------------------------------------------------- */
+.contact {
+  background: var(--m);           /* Hayag nga Magenta background gikan sa base.css */
+  color: #ffffff;                 /* Puti nga text color para klaro sa ibabaw sa magenta */
+  padding: 4rem 0;                /* Spacing sa ibabaw ug ubos (vertical padding) */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Gitunga nga Grid (Info sa Wala, Form sa Tuo)
+   UNSA NI SIYA: 2-column layout nga nagbahin sa impormasyon ug contact form.
+   -------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  gap: 2.5rem;                    /* Gintang tali sa contact details ug sa form card */
+}
+
+/* Responsiveness: Kung Desktop o Laptop ang screen (860px pataas) */
+@media (min-width: 860px) {
+  .contact-grid {
+    /* 2 ka kolum:
+       Wala (1fr)     = Contact Details
+       Tuo  (1.15fr)  = Puti nga Inquiry Form Card */
+    grid-template-columns: 1fr 1.15fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Titulo sa Contact (Wala nga Bahin)
+   UNSA NI SIYA: Ang heading nga "Got a project in mind?".
+   -------------------------------------------------------------------------- */
+.contact h2 {
+  margin-bottom: 1rem;            /* Espasyo ubos sa heading */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Parapo ubos sa Titulo sa Contact (Wala nga Bahin)
+   UNSA NI SIYA: Ang mubo nga text ("Tell me about your product...").
+   -------------------------------------------------------------------------- */
+.contact p {
+  max-width: 44ch;                /* Limitahan ang gilapdon aron hapsay basahon */
+  margin: 0 0 1.5rem;             /* Espasyo ubos sa parapo sa dili pa ang listahan */
+}
+
+
+/* ==========================================================================
+   2. CONTACT INFORMATION LIST (WALA NGA KOLUM)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Listahan sa Details (Wala nga Kolum)
+   UNSA NI SIYA: Unordered list nga nagkupot sa Email, Phone, Location, etc.
+   -------------------------------------------------------------------------- */
+.info {
+  list-style: none;               /* Tangtangon ang default bullet points sa browser */
+  padding: 0;                     /* Tangtangon ang default padding */
+  margin: 0;                      /* Tangtangon ang default margin */
+  display: grid;
+  gap: 0.9rem;                    /* Gintang o espasyo taliwala sa matag linya */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Matag Linya sa Listahan (Email, Phone, Facebook, etc.)
+   UNSA NI SIYA: 2-column micro-grid: Label sa wala (7rem) ug Bili sa tuo (1fr).
+   -------------------------------------------------------------------------- */
+.info li {
+  display: grid;
+  grid-template-columns: 7rem 1fr;/* 7rem para sa Label (Email), 1fr para sa Value */
+  gap: 0.5rem;                    /* Distansya tali sa label ug sa bili/link */
+  border-top: 2px solid rgba(255, 255, 255, 0.45); /* Puti nga divider line sa ibabaw */
+  padding-top: 0.7rem;            /* Spacing ibabaw sa matag divider line */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ang Baga nga Label sa Wala (pananglitan: "Email", "Phone")
+   UNSA NI SIYA: Bold nga text label.
+   -------------------------------------------------------------------------- */
+.info b {
+  font-weight: 600;               /* Baga nga font */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ang Clickable Links (Email address, Phone number, Socials)
+   UNSA NI SIYA: Links nga dunay animated hover underline effect.
+   -------------------------------------------------------------------------- */
+.info a {
+  text-decoration: none;          /* Tangtangon ang default underline */
+  word-break: break-all;          /* Putlon ang taas nga link kon dili maigo sa screen */
+
+  /* Animated underline effect: Puti nga linya nga nakatago (0% width) sa sugod */
+  background: linear-gradient(#ffffff, #ffffff) 0 100% / 0 2px no-repeat;
+  transition: background-size 0.25s ease;
+}
+
+/* Inig itungod ang cursor (hover) sa contact link */
+.info a:hover {
+  background-size: 100% 2px;      /* Molugway ang puti nga underline ngadto sa 100% */
+}
+
+
+/* ==========================================================================
+   3. CLIENT INQUIRY FORM CARD (TUO NGA KOLUM)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Puti nga Kahon / Card sa Tuo nga Bahin
+   UNSA NI SIYA: Ang puti nga container nga nagkupot sa tibuok inquiry form.
+   -------------------------------------------------------------------------- */
+.inquiry {
+  background: var(--card);        /* Puti nga background gikan sa base.css variable */
+  color: var(--ink);              /* Ngitngit/Itom nga text color */
+  border: 2px solid #15131f;      /* Baga nga itom nga outline border */
+  border-radius: 14px;            /* Linginon ang 4 ka eskina sa card */
+  padding: 1.4rem;                /* Spacing sa sulod sa card */
+
+  /* Retro brutalist solid drop shadow effect */
+  box-shadow: 8px 8px 0 #15131f;
+
+  display: grid;
+  gap: 1rem;                      /* Gintang taliwala sa matag field o row */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Titulo sa Sulod sa Form Card
+   UNSA NI SIYA: Ang heading nga "Project inquiry".
+   -------------------------------------------------------------------------- */
+.inquiry h3 {
+  font: 800 1.2rem var(--display);
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   4. FORM INPUT FIELDS & LABELS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Duha ka Magkatupad nga Inputs (pananglitan: Name & Email)
+   UNSA NI SIYA: Grid row container para sa side-by-side nga input boxes.
+   -------------------------------------------------------------------------- */
+.row {
+  display: grid;
+  gap: 1rem;                      /* Gintang tali sa duha ka input fields */
+}
+
+/* Responsiveness: Sa screens nga 560px pataas */
+@media (min-width: 560px) {
+  .row {
+    /* Bahinon sa duha ka managsama nga kolum (50% / 50%) */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ang Label sa Ibabaw sa Matag Field (pananglitan: "Your name")
+   UNSA NI SIYA: Nag-stack sa ibabaw sa input box aron hapsay tan-awon.
+   -------------------------------------------------------------------------- */
+.inquiry label {
+  display: grid;
+  gap: 0.3rem;                    /* Gintang tali sa label text ug sa input box */
+  font-weight: 600;               /* Baga nga font */
+  font-size: 0.92rem;             /* Gidak-on sa label */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ang Tanang Input Boxes, Dropdowns, ug Textarea
+   UNSA NI SIYA: Ang mismong sulatanan sa kliyente.
+   -------------------------------------------------------------------------- */
+.inquiry input,
+.inquiry select,
+.inquiry textarea {
+  font: 400 1rem var(--body);
+  color: var(--ink);
+  background: var(--paper);       /* Humok nga light gray background */
+  border: 2px solid var(--line);  /* Subtlety border line */
+  border-radius: 8px;             /* Rounded corners sa input box */
+  padding: 0.6rem 0.75rem;        /* Spacing sa sulod sa field */
+  width: 100%;                    /* Sakopon ang 100% nga gilapdon */
+
+  /* Hapsay nga transition sa border color */
+  transition: border-color 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Input Field nga Gi-click o Aktibo (Focus State)
+   UNSA NI SIYA: Mo-highlight og Magenta border aron mahibaloan nga nag-type ka.
+   -------------------------------------------------------------------------- */
+.inquiry input:focus,
+.inquiry select:focus,
+.inquiry textarea:focus {
+  border-color: var(--m);         /* Mausab ngadto sa Magenta ang border */
+  outline: none;                  /* Tangtangon ang default blue browser outline */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Sayop o Blanko nga Input Field (Error State)
+   UNSA NI SIYA: Pula nga border inig dunay kulang o sayop nga gi-type.
+   -------------------------------------------------------------------------- */
+.inquiry .bad {
+  border-color: #d92d20;          /* Pula nga warning border */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Pula nga Warning Text Ubos sa Input Field
+   UNSA NI SIYA: Error message text (pananglitan: "Enter your name.").
+   -------------------------------------------------------------------------- */
+.err {
+  color: #d92d20;                 /* Pula nga text color */
+  font-size: 0.85rem;             /* Gamay nga font size para sa error */
+  font-weight: 400;               /* Regular nga gibag-on */
+}
+
+
+/* ==========================================================================
+   5. ACTION BUTTONS & FEEDBACK MESSAGES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Container sa Duha ka Buttons sa Ubos sa Form
+   UNSA NI SIYA: Nagkupot sa "Send by email" ug "Copy message" buttons.
+   -------------------------------------------------------------------------- */
+.actions {
+  display: flex;
+  gap: 0.75rem;                   /* Gintang tali sa duha ka buttons */
+  flex-wrap: wrap;                /* Mo-ubos kung huot ang screen sa mobile */
+  align-items: center;            /* I-sentro vertically */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Pangunang Itom nga Button ("Send by email")
+   UNSA NI SIYA: Ang submit button nga moabli sa email client.
+   -------------------------------------------------------------------------- */
+.inquiry .btn {
+  border: 0;                      /* Tangtangon ang default border */
+  cursor: pointer;                /* Pointer cursor icon inig itungod sa mouse */
+  font: 600 1rem var(--body);     /* Font styling */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Transparent nga Outline Button ("Copy message")
+   UNSA NI SIYA: Ghost button nga mopili/mokopya sa mensahe ngadto sa clipboard.
+   -------------------------------------------------------------------------- */
+.ghost {
+  background: none;               /* Walay background fill */
+  border: 2px solid var(--ink);   /* Itom nga outline border */
+  color: var(--ink);              /* Itom nga text */
+  padding: 0.7rem 1.3rem;         /* Spacing sa sulod */
+  border-radius: 99px;            /* Pill shape */
+  font: 600 1rem var(--body);
+  cursor: pointer;
+
+  /* Hapsay nga transition inig hover */
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Inig itungod ang cursor (hover) sa Ghost button */
+.ghost:hover {
+  background: var(--ink);         /* Mahimong itom ang background */
+  color: var(--paper);            /* Mahimong puti ang text */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Mubo nga Pahinumdom Ubos sa Buttons
+   UNSA NI SIYA: Disclaimer text ("This opens your email app...").
+   -------------------------------------------------------------------------- */
+.note {
+  font-size: 0.85rem;             /* Gamay nga font */
+  color: var(--mute);             /* Abuhon nga kolor */
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Mensahe sa Status Ubos sa Buttons
+   UNSA NI SIYA: Feedback text (pananglitan: "Copied.", "Fix highlighted fields.").
+   -------------------------------------------------------------------------- */
+.status {
+  font-weight: 600;               /* Baga nga font */
+  color: var(--ink);              /* Klaro nga itom */
+  margin: 0;
+}

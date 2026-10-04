@@ -1,0 +1,320 @@
+/* ==========================================================================
+   HERO.CSS
+   Kini nga CSS file nagkontrol sa PINAKA-IBABAW (Header & Hero) sa website.
+   ==========================================================================
+
+   VISUAL MAP / KUNG ASA SILA DAPIT SA SCREEN:
+   --------------------------------------------------------------------------
+   ┌──────────────────────────────────────────────────────────────────────┐
+   │ .hero (Tibuok Dalag/Yellow Banner sa pinaka-ibabaw sa panid)        │
+   │                                                                      │
+   │   nav (Navigation Bar)                                               │
+   │   [ me.name (Wala) ]                [ nav a: Work | About | Contact ]│
+   │                                                                      │
+   │   .hero-grid (2 ka kolum sa Desktop):                                │
+   │   ┌──────────────────────────────┐  ┌─────────────────────────────┐  │
+   │   │ h1: Headline                 │  │ .stage & .cube:             │  │
+   │   │ p:  Introductory paragraph   │  │ 3D Packaging Box            │  │
+   │   │ .btn: "See my work" button   │  │ nga nagtuyok-tuyok sa tuo   │  │
+   │   └──────────────────────────────┘  └─────────────────────────────┘  │
+   └──────────────────────────────────────────────────────────────────────┘
+   │ .marquee (Itom nga strip ubos sa Hero nga nagdagan ang mga pulong)   │
+   └──────────────────────────────────────────────────────────────────────┘
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. HERO BANNER CONTAINER
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tibuok Dalag/Yellow Background sa Pinaka-ibabaw
+   UNSA NI SIYA: Ang main container sa tibuok Hero section.
+   -------------------------------------------------------------------------- */
+.hero {
+  /* Kolor sa background: Dalag (Yellow) gikan sa base.css variable */
+  background: var(--y);
+
+  /* Kolor sa font: Ngitngit/Itom aron daling basahon ibabaw sa dalag */
+  color: #15131f;
+
+  /* Pugngan ang bisan unsa nga molapas sa kilid sa screen */
+  overflow: hidden;
+}
+
+
+/* ==========================================================================
+   2. NAVIGATION BAR (HEADER MENU)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Menu Bar sa ibabaw (Header Navigation)
+   UNSA NI SIYA: Nagkupot sa ngalan/logo sa wala ug navigation links sa tuo.
+   -------------------------------------------------------------------------- */
+nav {
+  display: flex;
+  justify-content: space-between; /* Ipahimutang sa magkaatbang nga kilid ang ngalan ug links */
+  align-items: center;            /* I-sentro sa tunga vertically */
+  padding: 1.25rem 0;             /* Espasyo sa ibabaw ug ubos */
+  font-weight: 600;               /* Medyo baga nga letra */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tuo nga bahin sa Menu (Links container)
+   UNSA NI SIYA: Nagkupot sa "Work", "About", ug "Contact" links.
+   -------------------------------------------------------------------------- */
+nav div {
+  display: flex;
+  gap: 1.25rem;                   /* Gintang o distansya taliwala sa matag link */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ang matag link sa Menu (Work, About, Contact)
+   UNSA NI SIYA: Clickable text nga dunay animated underline effect inig itungod ang mouse.
+   -------------------------------------------------------------------------- */
+nav a {
+  text-decoration: none;          /* Tangtangon ang default blue underline sa browser */
+
+  /* Animated underline effect: Magenta nga linya nga nakatago (0% width) sa sugod */
+  background: linear-gradient(var(--m), var(--m)) 0 100% / 0 3px no-repeat;
+
+  /* Hapsay nga transition inig gawas sa linya */
+  transition: background-size 0.25s ease;
+}
+
+/* Inig itungod ang mouse cursor (hover) sa link */
+nav a:hover {
+  /* Molugway ang Magenta nga underline ngadto sa 100% width */
+  background-size: 100% 3px;
+}
+
+
+/* ==========================================================================
+   3. HERO CONTENT & HEADLINE (WALA NGA BAHIN)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Gitunga nga bahin sa Hero (Text sa wala, 3D Box sa tuo)
+   UNSA NI SIYA: Responsive 2-column layout para sa headline ug sa 3D cube.
+   -------------------------------------------------------------------------- */
+.hero-grid {
+  display: grid;
+  gap: 2rem;                      /* Distansya tali sa text ug sa 3D box */
+  align-items: center;            /* I-sentro vertically */
+  padding: 2rem 0 4rem;           /* Spacing sa ibabaw ug ubos */
+}
+
+/* Responsiveness: Kung Desktop o Laptop ang screen (820px pataas) */
+@media (min-width: 820px) {
+  .hero-grid {
+    /* 2 ka kolum: 1.3fr sa wala (text), 1fr sa tuo (3D box) */
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Dako nga Titulo sa Hero (Wala nga bahin)
+   UNSA NI SIYA: Ang pinakadako nga headline ("Turning Complex Data and Brand Stories...").
+   -------------------------------------------------------------------------- */
+h1 {
+  /* Fluid font size nga awtomatikong mo-adjust base sa screen width:
+     Minimum: 2.1rem (Mobile), Preferred: 6.5vw, Maximum: 4.2rem (Desktop) */
+  font: 800 clamp(2.1rem, 6.5vw, 4.2rem) / 1.05 var(--display);
+  letter-spacing: -0.03em;        /* Nipis nga espasyo tali sa mga letra */
+  margin: 0 0 1.25rem;            /* Espasyo sa ubos sa headline */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Pasiuna nga Parapo (Ubos sa H1 Title)
+   UNSA NI SIYA: Ang mubo nga pasiuna bahin sa imong print & packaging trabaho.
+   -------------------------------------------------------------------------- */
+.hero p {
+  max-width: 50ch;                /* Limitahan ang gilapdon sa 50 ka letra aron komportable basahon */
+  font-size: 1.125rem;            /* Gidak-on sa font */
+  margin: 0 0 1.75rem;            /* Espasyo sa ubos sa parapo */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Itom nga Button (Ubos sa Pasiuna nga Parapo)
+   UNSA NI SIYA: Clickable button nga "See my work" nga mo-scroll padulong sa portfolio.
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  background: #15131f;            /* Itom/ngitngit nga background sa button */
+  color: #ffffff;                 /* Puti nga kolor sa teksto */
+  padding: 0.85rem 1.5rem;        /* Spacing sa sulod sa button */
+  font-weight: 600;               /* Baga nga font */
+  text-decoration: none;          /* Tangtangon ang underline */
+  border-radius: 99px;            /* Pill-shaped / linginon ang mga eskina */
+
+  /* Hapsay nga transition inig hover sa mouse */
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* Inig itungod ang cursor (hover) sa button */
+.btn:hover {
+  background: var(--m);           /* Mausab ang kolor ngadto sa Magenta */
+  transform: translateY(-3px);    /* Mosaka og 3 pixels aron morag mi-alsa */
+}
+
+
+/* ==========================================================================
+   4. 3D ROTATING PACKAGING BOX (TUO NGA BAHIN)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Tuo nga bahin sa Hero (Lugar diin nagtuyok ang 3D Box)
+   UNSA NI SIYA: Ang 3D Stage nga naghatag og gilay-on (perspective) sa panan-aw.
+   -------------------------------------------------------------------------- */
+.stage {
+  height: 300px;                  /* Taas sa 3D container */
+  display: grid;
+  place-items: center;            /* I-sentro ang cube sa tunga */
+  perspective: 900px;             /* Gilay-on sa 3D camera effect aron klaro ang gilawmon */
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ang Mismong 3D Cube nga Nagtuyok
+   UNSA NI SIYA: Ang 150px x 150px nga packaging carton box container.
+   -------------------------------------------------------------------------- */
+.cube {
+  width: 150px;                   /* Lapad sa box */
+  height: 150px;                  /* Taas sa box */
+  position: relative;
+  transform-style: preserve-3d;   /* Huptan ang tinuod nga 3D geometry sa matag kilid */
+
+  /* Walay-katapusan nga pagtuyok (14 segundos matag 360-degree cycle) */
+  animation: spin 14s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ang 6 ka Kilid (Faces) sa 3D Cube
+   UNSA NI SIYA: Ang base styling para sa atubangan, tuo, luyo, wala, babaw, ug ubos.
+   -------------------------------------------------------------------------- */
+.face {
+  position: absolute;
+  inset: 0;                       /* Sakopon ang 150px x 150px nga sukod */
+  display: grid;
+  place-items: center;            /* I-sentro ang teksto sulod sa face */
+  font: 800 1rem var(--display);  /* Baga nga display font */
+  color: #ffffff;                 /* Puti nga text color */
+  border: 2px solid #15131f;      /* Itom nga outline sama sa die-line sa packaging */
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/* Kilid 1: ATUBANGAN (Front) - Magenta color diin nakasulat ang imong Brand Name */
+.f1 {
+  transform: translateZ(75px);
+  background: var(--m);
+}
+
+/* Kilid 2: TUO (Right) - Cyan color diin nakasulat ang "Net wt. 250 g" */
+.f2 {
+  transform: rotateY(90deg) translateZ(75px);
+  background: var(--c);
+}
+
+/* Kilid 3: LUYO (Back) - Itom/Dark diin nakasulat ang "Open here" */
+.f3 {
+  transform: rotateY(180deg) translateZ(75px);
+  background: #15131f;
+}
+
+/* Kilid 4: WALA (Left) - Puti nga dunay "Recycle" label ug itom nga text */
+.f4 {
+  transform: rotateY(-90deg) translateZ(75px);
+  background: #ffffff;
+  color: #15131f;
+}
+
+/* Kilid 5: IBABAW (Top) - Cyan color */
+.f5 {
+  transform: rotateX(90deg) translateZ(75px);
+  background: var(--c);
+}
+
+/* Kilid 6: ILAWOM (Bottom) - Magenta color */
+.f6 {
+  transform: rotateX(-90deg) translateZ(75px);
+  background: var(--m);
+}
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ilawom sa 3D Cube Box
+   UNSA NI SIYA: Ang landong (Shadow) nga nagpulso dungan sa pagtuyok sa box.
+   -------------------------------------------------------------------------- */
+.shadow {
+  position: absolute;
+  width: 150px;
+  height: 24px;
+  border-radius: 50%;             /* Oval/lingin nga porma sa landong */
+  background: rgba(0, 0, 0, 0.18);/* Transparent nga itom aron natural tan-awon */
+  filter: blur(8px);              /* Hanap/blurred nga kilid sa landong */
+  transform: translateY(130px);   /* Gipahimutang 130px ubos sa sentro sa cube */
+
+  /* Animation sa landong nga mosabay sa pagtuyok sa box */
+  animation: pulse 14s linear infinite;
+}
+
+/* Animation timing sa pagtuyok sa 3D Cube */
+@keyframes spin {
+  from {
+    /* Sugod sa gamay nga tilt (-22deg) ug 0deg Y */
+    transform: rotateX(-22deg) rotateY(0deg);
+  }
+  to {
+    /* Motuyok og tibuok 360 degrees sa Y-axis */
+    transform: rotateX(-22deg) rotateY(360deg);
+  }
+}
+
+/* Animation sa landong: mo-gamay gamay kung mo-alsa ang box */
+@keyframes pulse {
+  50% {
+    transform: translateY(130px) scaleX(0.8);
+  }
+}
+
+
+/* ==========================================================================
+   5. MARQUEE STRIP (MOVING WORD TICKER)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   KUNG ASA DAPIT: Ubos gayod sa Dalag nga Hero Section
+   UNSA NI SIYA: Itom nga Moving Banner (Marquee) nga dunay keywords ug bituon.
+   -------------------------------------------------------------------------- */
+.marquee {
+  background: #15131f;            /* Itom nga background */
+  color: #ffffff;                 /* Puti nga teksto */
+  overflow: hidden;               /* Tagoon ang molapas sa kilid sa screen */
+  white-space: nowrap;            /* Usa ra ka tul-id nga linya, dili tugotan nga mo-wrap */
+  padding: 0.9rem 0;              /* Vertical padding sa strip */
+}
+
+/* Ang track nga nagpalihok sa mga pulong padulong sa wala */
+.track {
+  display: inline-flex;
+  gap: 2.5rem;                    /* Distansya tali sa matag pulong */
+
+  /* Tul-id ug walay-hunong nga pag-slide (26 segundos matag cycle) */
+  animation: slide 26s linear infinite;
+}
+
+/* Ang matag pulong sulod sa ticker ("Packaging", "Labels", "Dielines") */
+.marquee span {
+  font: 600 1rem var(--display);
+}
+
+/* Ang bituon / star divider icon (✦) taliwala sa mga pulong */
+.marquee b {
+  color: var(--y);                /* Dalag (Yellow) nga accent color */
+}
+
+/* Animation sa pag-slide sa mga pulong padulong sa wala */
+@keyframes slide {
+  to {
+    transform: translateX(-50%);  /* Mo-slide padulong sa wala hangtod 50% */
+  }
+}

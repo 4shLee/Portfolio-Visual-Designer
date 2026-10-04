@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Your Name — Print & Packaging Design</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <nav>
+        <strong>{{ me.name }}</strong>
+        <div><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+      </nav>
+      <div class="hero-grid">
+        <div>
+          <h1>Turning Complex Data and Brand Stories into Print-Ready Masterpieces</h1>
+          <p>{{ me.intro }}</p>
+          <a class="btn" href="#work">See my work</a>
+        </div>
+        <div class="stage" aria-hidden="true">
+          <div class="shadow"></div>
+          <div class="cube">
+            <div class="face f1">{{ me.brand }}</div>
+            <div class="face f2">Net wt. 250 g</div>
+            <div class="face f3">Open here</div>
+            <div class="face f4">Recycle</div>
+            <div class="face f5"></div>
+            <div class="face f6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Moving word strip -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <template v-for="n in 2" :key="n">
+        <span v-for="w in words" :key="w + n">{{ w }} <b>✦</b></span>
+      </template>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- Work -->
+    <section id="work">
+      <h2>Selected work</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button v-for="c in categories" :key="c" :aria-pressed="category === c" @click="category = c">{{ c }}</button>
+      </div>
+      <div class="grid">
+        <project-card
+          v-for="(p, i) in shownProjects"
+          :key="p.id"
+          :project="p"
+          :index="i"
+          @select="openProject = $event"
+        ></project-card>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+      <div>
+        <h2>About</h2>
+        <p v-for="t in me.about" :key="t">{{ t }}</p>
+      </div>
+      <div>
+        <h2>Skills</h2>
+        <ul class="tags"><li v-for="s in me.skills" :key="s">{{ s }}</li></ul>
+      </div>
+    </section>
+    <Section></Section>
+  </main>
+
+  <!-- Contact -->
+  <footer class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Got a project in mind?</h2>
+        <p>Tell me about your product, label, or print job. I'll reply with questions, a timeline, and a quote.</p>
+        <ul class="info">
+          <li><b>Email</b><a :href="'mailto:' + me.email">{{ me.email }}</a></li>
+          <li><b>Phone</b><a :href="'tel:' + me.phoneRaw">{{ me.phone }}</a></li>
+          <li><b>Location</b><span>{{ me.location }}</span></li>
+          <li><b>Facebook</b><a :href="me.facebook" target="_blank" rel="noopener">{{ me.facebookLabel }}</a></li>
+          <li><b>Instagram</b><a :href="me.instagram" target="_blank" rel="noopener">{{ me.instagramLabel }}</a></li>
+          <li><b>Availability</b><span>{{ me.availability }}</span></li>
+        </ul>
+      </div>
+      <contact-form :me="me" :types="types" :budgets="budgets"></contact-form>
+    </div>
+  </footer>
+
+  <!-- Project pop-up -->
+  <transition name="pop">
+    <project-modal v-if="openProject" :project="openProject" @close="openProject = null"></project-modal>
+  </transition>
+
+</div>
+
+<!-- Vue 3 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.21/vue.global.prod.min.js"></script>
+<!-- Your code (order matters: data, helpers, components, then app) -->
+<script src="js/data.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/components/ProjectCard.js"></script>
+<script src="js/components/ProjectModal.js"></script>
+<script src="js/components/ContactForm.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
